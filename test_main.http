@@ -1,0 +1,10 @@
+POST http://192.168.188.97:8000/lights_out
+Accept: application/json
+
+{
+    "correctGlyph": "Scarab",
+    "incorrectGlyph": ["Fish", "Goose", "Turtle", "Falcon"],
+    "introduction": "Du musst das folgende Rätsel lösen: Wähle nur den Käfer aus. Verwende hierzu die Kippschalter vor dir. Doch sei gewarnt, sie ändern oft mehr als gewünscht",
+    "onFail": ["Das ist leider noch nicht des Rätsels Lösung", "Versuche es weiter!", "Naja, noch nicht richtig!"],
+    "onSolve": "herzlichen Glückwunsch, du hast das Rätsel gelöst!"
+}

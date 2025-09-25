@@ -1,0 +1,59 @@
+                   List Page (Lynx Version 2.9.0dev.12), help
+
+   References in
+   file://localhost/usr/share/doc/lynx-common/lynx_help/lynx_help_main.htm
+   l.gz
+
+    1. in Lynx Users Guide v2.8.9
+    2. file://localhost/usr/share/doc/lynx-common/lynx_help/keystrokes/key
+       stroke_help.html.gz
+    3. file://localhost/usr/share/doc/lynx-common/lynx_help/keystrokes/edi
+       t_help.html.gz
+    4. file://localhost/usr/share/doc/lynx-common/lynx_help/lynx_url_suppo
+       rt.html.gz
+    5. file://localhost/usr/share/doc/lynx-common/lynx_help/about_lynx.htm
+       l.gz
+    6. file://localhost/usr/share/doc/lynx-common/lynx_help/lynx-dev.html.
+       gz
+    7. file://localhost/usr/share/doc/lynx-common/lynx_help/cattoc.html.gz
+    8. https://lynx.invisible-island.net/release/breakout/docs/
+    9. http://www.chass.utoronto.ca/%7Epurslow/lhfb.html
+   10. http://leb.net/blinux/blynx/
+   11. http://www.w3.org/TR/html51/
+   12. http://www.w3.org/TR/REC-html40/
+   13. http://www.w3.org/TR/REC-html32
+   14. http://www.w3.org/MarkUp/html3/Contents.html
+   15. http://www.w3.org/MarkUp/html-spec/html-spec_toc.html
+   16. http://www.w3.org/Protocols/
+   17. http://www.isi.edu/in-notes/rfc1945.txt
+   18. http://www.w3.org/TR/xhtml1/
+   19. http://www.w3.org/Addressing/
+   20. http://www.w3.org/International/
+   21. http://www.w3.org/
+   22. http://www.htmlhelp.com/reference/html40/
+   23. http://www.w3schools.com/html/default.asp
+   24. http://www.htmlgoodies.com/primers/html/
+   25. http://www.htmlcodetutorial.com/
+   26. http://www.simplehtmlguide.com/cheatsheet.php
+   27. http://validator.w3.org/
+   28. http://www.htmlhelp.com/tools/validator/
+   29. http://wget.addictivecode.org/
+   30. http://www.pavuk.org/
+   31. http://curl.haxx.se/
+   32. http://www.xach.com/snarf/
+   33. http://web.archive.org/web/2005050785333/http://archive.ncsa.uiuc.e
+       du/SDG/Software/Mosaic/MetaIndex.html
+   34. http://www.ask.com/
+   35. http://www.baidu.com/
+   36. http://www.bing.com/
+   37. http://www.dogpile.com/
+   38. http://labs.goo.ne.jp/
+   39. http://www.google.com/
+   40. http://hakia.com/
+   41. http://www.icerocket.com/
+   42. http://www.indeed.com/
+   43. http://www.lexxe.com/
+   44. http://www.rambler.ru/
+   45. http://www.search.com/
+   46. http://www.webcrawler.com/
+   47. http://www.yahoo.com/
