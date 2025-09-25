@@ -11,18 +11,17 @@ PROPABILITY_COMMENT_ON_FAIL = 0.35
 class WordRiddle:
     def __init__(
         self,
-        word: str,               # Zielwort, z.B. "HAUS"
-        buttons: list[Button],   # GPIO-Buttons
-        displays: list[Display], # Displays für die Buchstaben
+        word: str,
+        buttons: list[Button],
+        displays: list[Display],
         introduction: str,
         on_fail: list[str],
-        on_solve: str
+        on_solve: str,
+        on_solved_callback=None   # <- neu
     ):
-        self.word = list(word.upper())     # ["H","A","U","S"]
-
-        # Buchstaben zufällig verteilen
+        self.word = list(word.upper())
         self.letters = self.word.copy()
-        random.shuffle(self.letters)       # z.B. ["U","S","A","H"]
+        random.shuffle(self.letters)
 
         self.buttons = buttons
         self.displays = displays
@@ -32,12 +31,14 @@ class WordRiddle:
         self.on_fail = [generate_speech(n) for n in on_fail]
         self.on_solve = generate_speech(on_solve)
 
-        # Displays zeigen die zufälligen Buchstaben
+        self.on_solved_callback = on_solved_callback  # <- neu
+
+        # Displays initialisieren
         for i, d in enumerate(self.displays):
             if i < len(self.letters):
                 d.show_text(self.letters[i])
 
-        # Buttons mit den geshuffelten Buchstaben verbinden
+        # Buttons verbinden
         for btn, letter in zip(self.buttons, self.letters):
             btn.when_pressed = lambda l=letter: self.press(l)
 
@@ -76,3 +77,6 @@ class WordRiddle:
         say(self.on_solve)
         NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 6, 0.2)
         NEOPIXELS.start_continuous(0.3)
+
+        if self.on_solved_callback:       
+            self.on_solved_callback()

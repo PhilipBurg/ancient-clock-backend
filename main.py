@@ -6,6 +6,10 @@ from components.buttons import TOGGLE_SWITCHES, BUTTONS
 from components.displays import DISPLAYS
 from riddles.lightsout import LightsOut
 from riddles.word_riddle import WordRiddle
+from riddles.pot_riddle import PotRiddle
+from riddles.manager import RiddleManager
+
+manager = RiddleManager()
 
 app = FastAPI()
 app.add_middleware(
@@ -62,3 +66,20 @@ async def start_word_riddle(body: WordRiddleRequest):
     )
     r.start()
     return {"message": f"WordRiddle gestartet mit Wort: {body.word}"}
+
+    # -------- PotRiddle ----------
+class PotRiddleRequest(BaseModel):
+    introduction: str
+    onFail: list[str]
+    onSolve: str
+
+@app.post("/pot_riddle")
+async def start_pot_riddle(body: PotRiddleRequest):
+    r = PotRiddle(body.introduction, body.onFail, body.onSolve)
+    r.start()
+    return {"message": "PotRiddle gestartet"}
+
+@app.post("/start_game")
+async def start_game():
+    manager.start()
+    return {"message": "Game gestartet"}

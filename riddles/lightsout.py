@@ -19,7 +19,8 @@ class LightsOut:
             displays: list[Display],
             introduction: str,
             on_fail: list[str],
-            on_solve: str
+            on_solve: str,
+            on_solved_callback=None 
     ):
         self.correct_glyph = correct_glyph
         self.incorrect_glyph = incorrect_glyph
@@ -29,9 +30,11 @@ class LightsOut:
         self.state = [False] * 4
         self.wiring = create_wiring()
 
-        self.introduction = generate_speech(introduction, True)
-        self.on_fail = [generate_speech(n, True) for n in on_fail]
-        self.on_solve = generate_speech(on_solve, True)
+        self.introduction = generate_speech(introduction)
+        self.on_fail = [generate_speech(n) for n in on_fail]
+        self.on_solve = generate_speech(on_solve)
+
+        self.on_solved_callback = on_solved_callback
 
     def switch(self, switch_number):
         for i, b in enumerate(self.wiring[switch_number]):
@@ -76,6 +79,9 @@ class LightsOut:
         say(self.on_solve)
         NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 6, 0.2)
         NEOPIXELS.start_continuous(0.3)
+
+        if self.on_solved_callback:      
+            self.on_solved_callback()
 
 
 def create_wiring() -> list[list[bool]]:
