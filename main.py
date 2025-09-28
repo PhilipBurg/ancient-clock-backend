@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -80,6 +80,18 @@ async def start_pot_riddle(body: PotRiddleRequest):
     return {"message": "PotRiddle gestartet"}
 
 @app.post("/start_game")
+async def start_game(request: Request):
+    body = await request.json()
+    print("Payload received:", body)
+
+    pot_riddle = body.get("pot_riddle", 100)
+    lightsout = body.get("lightsout", ["Scarab", "Fish", "Goose", "Turtle"])
+    word_riddle = body.get("word_riddle", {"word": "HAUS", "letters": ["H","A","U","S"]})
+
+    manager.start(pot_riddle, lightsout, word_riddle)
+    return {"status": "started"}
+
+""" @app.post("/start_game")
 async def start_game():
     manager.start()
-    return {"message": "Game gestartet"}
+    return {"message": "Game gestartet"} """

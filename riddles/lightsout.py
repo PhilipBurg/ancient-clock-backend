@@ -51,7 +51,9 @@ class LightsOut:
         if (self.state[display_number]):
             glyph = self.correct_glyph
         else:
-            glyph = self.incorrect_glyph[display_number]
+            #glyph = self.incorrect_glyph[display_number]
+            list_length = len(self.incorrect_glyph)
+            glyph = self.incorrect_glyph[display_number % list_length] 
         self.displays[display_number].show_hieroglyph(glyph)
 
     def start(self):
@@ -77,14 +79,15 @@ class LightsOut:
         self.stop()
         SUCCESS_SOUND.play()
         say(self.on_solve)
-        NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 2, 0.2)
+        NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 1, 0.1)
         NEOPIXELS.start_continuous(0.3)
+        
 
         if self.on_solved_callback:      
             self.on_solved_callback()
 
 
-def create_wiring() -> list[list[bool]]:
+"""def create_wiring() -> list[list[bool]]:
     rng = random.Random()
     base = [
         [True, True, False, False],
@@ -98,4 +101,11 @@ def create_wiring() -> list[list[bool]]:
     p = list(range(4))
     rng.shuffle(p)
     M = [[base[p[i]][p[j]] for j in range(4)] for i in range(4)]
-    return M
+    return M """
+def create_wiring() -> list[list[bool]]:
+    return [
+        [False, True, False, False],   # S0 -> D1
+        [True, False, True, False],    # S1 -> D0 + D2
+        [False, True, False, True],    # S2 -> D1 + D3
+        [False, False, True, False],   # S3 -> D2
+    ] 

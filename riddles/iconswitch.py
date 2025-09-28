@@ -1,4 +1,4 @@
-import random
+"""import random
 from signal import pause
 
 from gpiozero import Button
@@ -65,4 +65,48 @@ def create_wiring() -> list[list[bool]]:
 
 
 i = IconSwitch('Owl', ['Lion', 'Man_standing', 'Elephant', 'Scarab'], TOGGLE_SWITCHES[:4], DISPLAYS[:4])
+pause()
+ """
+ from signal import pause
+from gpiozero import Button
+from components.buttons import TOGGLE_SWITCHES
+from components.displays import DISPLAYS
+
+class IconSwitch:
+    def __init__(self, correct_glyph, incorrect_glyph, toggles, displays):
+        self.correct_glyph = correct_glyph
+        self.incorrect_glyph = incorrect_glyph
+        self.buttons = toggles
+        self.displays = displays
+        self.state = [False] * 4
+        self.wiring = create_wiring()
+
+        for i in range(4):
+            self.buttons[i].when_activated = lambda i=i: self.switch(i)
+            self.update_display(i)
+
+    def switch(self, switch_number):
+        for i, active in enumerate(self.wiring[switch_number]):
+            if active:
+                self.state[i] = not self.state[i]
+                self.update_display(i)
+
+    def update_display(self, display_number):
+        if self.state[display_number]:
+            glyph = self.correct_glyph
+        else:
+            glyph = self.incorrect_glyph[display_number]
+        self.displays[display_number].show_hieroglyph(glyph)
+
+
+def create_wiring():
+    return [
+        [False, True, False, False],
+        [True, False, True, False],
+        [False, True, False, True],
+        [False, False, True, False],
+    ]
+
+
+i = IconSwitch("Scarab", ["Fish", "Goose", "Turtle", "Falcon"], TOGGLE_SWITCHES[:4], DISPLAYS[:4])
 pause()

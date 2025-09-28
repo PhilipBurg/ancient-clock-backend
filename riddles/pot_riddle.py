@@ -6,14 +6,14 @@ from components.speaker import SUCCESS_SOUND, say, generate_speech, start_music
 from components.potentiometers import Potentiometers
 
 CHECKMARK_PATH = "./assets/checkmark.png"
-TOLERANCE = 5.0  # Prozent Toleranz um 100
-
+TOLERANCE = 5.0  # Toleranz für Zielwert (±5)
 
 class PotRiddle:
-    def __init__(self, introduction: str, on_fail: list[str], on_solve: str, on_solved_callback=None):
+    def __init__(self, introduction: str, on_fail: list[str], on_solve: str, target_sum: int, on_solved_callback=None):
         self.pots = Potentiometers()
         self.displays = DISPLAYS[8:11]  
         self.running = True
+        self.target_sum = target_sum 
 
         self.introduction = generate_speech(introduction)
         self.on_fail = [generate_speech(n) for n in on_fail]
@@ -38,7 +38,7 @@ class PotRiddle:
                 self.displays[i].show_text(f"{v:.0f}")
 
             # Check: Summe ~100
-            if abs(total - 100.0) <= TOLERANCE:
+            if abs(total - self.target_sum) <= TOLERANCE:
                 self.handle_solved()
                 break
 
@@ -52,8 +52,9 @@ class PotRiddle:
 
         SUCCESS_SOUND.play()
         say(self.on_solve)
-        NEOPIXELS.start_sine_blink_and_sleep((0, 255, 0), 2, 0.2)
+        NEOPIXELS.start_sine_blink_and_sleep((0, 255, 0), 1, 0.1)
         NEOPIXELS.start_continuous(0.3)
+        
 
         # Callback triggern
         if self.on_solved_callback:

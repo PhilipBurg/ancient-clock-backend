@@ -12,6 +12,7 @@ class WordRiddle:
     def __init__(
         self,
         word: str,
+        letters: list[str],
         buttons: list[Button],
         displays: list[Display],
         introduction: str,
@@ -20,8 +21,9 @@ class WordRiddle:
         on_solved_callback=None  
     ):
         self.word = list(word.upper())
-        self.letters = self.word.copy()
-        random.shuffle(self.letters)
+        self.letters = letters  
+        #self.letters = self.word.copy()
+        #random.shuffle(self.letters)
 
         self.buttons = buttons
         self.displays = displays
