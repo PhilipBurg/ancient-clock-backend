@@ -21,6 +21,11 @@ class displays2:
         self.__oled.image(img)
         self.__oled.show()
 
+    def clear(self):
+        from components.imagegenerator import CLEAR
+        self.__oled.image(CLEAR)
+        self.__oled.show()
+
 
 i2c = busio.I2C(board.SCL, board.SDA)
 

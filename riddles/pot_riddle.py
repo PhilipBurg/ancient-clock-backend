@@ -2,7 +2,7 @@ from time import sleep
 
 from components.displays import DISPLAYS
 from components.neopixels import NEOPIXELS
-from components.speaker import SUCCESS_SOUND, say, generate_speech
+from components.speaker import SUCCESS_SOUND, say, generate_speech, start_music
 from components.potentiometers import Potentiometers
 
 CHECKMARK_PATH = "./assets/checkmark.png"
@@ -24,6 +24,7 @@ class PotRiddle:
 
     def start(self):
         """Blocking Loop – läuft so lange, bis das Rätsel gelöst ist."""
+        start_music()
         say(self.introduction)
         NEOPIXELS.start_continuous(0.7)
 
@@ -51,7 +52,7 @@ class PotRiddle:
 
         SUCCESS_SOUND.play()
         say(self.on_solve)
-        NEOPIXELS.start_sine_blink_and_sleep((0, 255, 0), 6, 0.2)
+        NEOPIXELS.start_sine_blink_and_sleep((0, 255, 0), 2, 0.2)
         NEOPIXELS.start_continuous(0.3)
 
         # Callback triggern

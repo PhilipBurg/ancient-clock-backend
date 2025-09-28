@@ -77,7 +77,7 @@ class LightsOut:
         self.stop()
         SUCCESS_SOUND.play()
         say(self.on_solve)
-        NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 6, 0.2)
+        NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 2, 0.2)
         NEOPIXELS.start_continuous(0.3)
 
         if self.on_solved_callback:      

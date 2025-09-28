@@ -17,7 +17,7 @@ class WordRiddle:
         introduction: str,
         on_fail: list[str],
         on_solve: str,
-        on_solved_callback=None   # <- neu
+        on_solved_callback=None  
     ):
         self.word = list(word.upper())
         self.letters = self.word.copy()
@@ -31,7 +31,7 @@ class WordRiddle:
         self.on_fail = [generate_speech(n) for n in on_fail]
         self.on_solve = generate_speech(on_solve)
 
-        self.on_solved_callback = on_solved_callback  # <- neu
+        self.on_solved_callback = on_solved_callback  
 
         # Displays initialisieren
         for i, d in enumerate(self.displays):
@@ -75,7 +75,7 @@ class WordRiddle:
         self.stop()
         SUCCESS_SOUND.play()
         say(self.on_solve)
-        NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 6, 0.2)
+        NEOPIXELS.start_sine_blink_and_sleep((100, 255, 0), 2, 0.2)
         NEOPIXELS.start_continuous(0.3)
 
         if self.on_solved_callback:       

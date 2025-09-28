@@ -1,8 +1,33 @@
+import time
+import pygame
 from riddles.pot_riddle import PotRiddle
 from riddles.lightsout import LightsOut
 from riddles.word_riddle import WordRiddle
 from components.buttons import TOGGLE_SWITCHES, BUTTONS
 from components.displays import DISPLAYS
+from components.neopixels import NEOPIXELS
+from components.speaker import SUCCESS_SOUND, say, generate_speech
+from gpiozero import Device
+
+def shutdown_alarm():
+    say(generate_speech("super, ich schalte mich nun aus"))
+    time.sleep(2)
+
+    # stop all sounds
+    pygame.mixer.stop()  
+    pygame.mixer.quit() 
+
+    NEOPIXELS.stop()
+
+    # Displays off
+    for d in DISPLAYS:
+        try:
+            d.clear()
+        except AttributeError:
+            pass  # if DummyDisplay
+
+    # close GPIO-Threads clean
+    Device.pin_factory.close()
 
 class RiddleManager:
     def __init__(self):
@@ -40,6 +65,7 @@ class RiddleManager:
             displays=DISPLAYS[4:8],
             introduction="Ordne die Buchstaben zu einem sinnvollen Wort!",
             on_fail=["Das war falsch, versuch es nochmal!"],
-            on_solve="Sehr gut, das Wort lautet HAUS!"
+            on_solve="Sehr gut, das Wort lautet HAUS!",
+            on_solved_callback=shutdown_alarm 
         )
         self.current.start()
