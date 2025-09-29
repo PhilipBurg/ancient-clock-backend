@@ -13,7 +13,7 @@ from components.clock import start_clock, stop_clock
 
 def shutdown_alarm():
     say(generate_speech("super, ich schalte mich nun aus"))
-    time.sleep(2)
+    time.sleep(1)
 
     # stop all sounds
     pygame.mixer.stop()  

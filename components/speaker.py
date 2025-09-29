@@ -26,7 +26,7 @@ def stop_music():
     pygame.mixer.music.stop()
 
 def lower_music():
-    pygame.mixer.music.set_volume(0.3)  # little bit more quite when speaking
+    pygame.mixer.music.set_volume(0.5)  # little bit more quite when speaking
 
 def restore_music():
     pygame.mixer.music.set_volume(1.0)
