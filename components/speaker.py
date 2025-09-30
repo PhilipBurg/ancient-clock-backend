@@ -16,7 +16,7 @@ voice = PiperVoice.load("./voices/de_DE-thorsten-medium.onnx")
 pygame.mixer.init()
 SUCCESS_SOUND = pygame.mixer.Sound("./assets/success.mp3")
 
-pygame.mixer.music.load("./assets/ancient_egypt.wav")
+pygame.mixer.music.load("./assets/ancient_egypt_loud.wav")
 
 def start_music():
     pygame.mixer.music.set_volume(1.0)  #loudest
@@ -26,7 +26,7 @@ def stop_music():
     pygame.mixer.music.stop()
 
 def lower_music():
-    pygame.mixer.music.set_volume(0.5)  # little bit more quite when speaking
+    pygame.mixer.music.set_volume(0.8)  # little bit more quite when speaking
 
 def restore_music():
     pygame.mixer.music.set_volume(1.0)
@@ -47,6 +47,7 @@ def generate_speech(text: str, local=False):
 def say(filename):
     lower_music()
     sound = pygame.mixer.Sound(filename)
+    sound.set_volume(1.0)
     sound.play()
     while pygame.mixer.get_busy():  
         pygame.time.delay(100)

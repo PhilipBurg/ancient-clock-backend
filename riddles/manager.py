@@ -59,7 +59,7 @@ class RiddleManager:
             #incorrect_glyph=["Fish", "Goose", "Turtle", "Falcon"],
             toggles=TOGGLE_SWITCHES,
             displays=DISPLAYS[:4],
-            introduction="Wähle nur den Käfer aus",
+            introduction="Schnappe den Käfer",
             on_fail=["Leider falsch", "Versuche es weiter!"],
             on_solve="du hast das Rätsel gelöst!",
             on_solved_callback=lambda: self.start_word(word_riddle)
